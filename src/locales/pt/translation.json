@@ -8,5 +8,9 @@
   "cpfInitialFormLabel": "CPF (Titular ou responsável)",
   "passportInitialFormLabel": "Passaporte (Titular ou Responsável)",
   "requiredField": "Campo obrigatório",
-  "onlyDependants": "Considerar apenas os dependentes/acompanhantes"
+  "onlyDependants": "Considerar apenas os dependentes/acompanhantes",
+  "warningMessage": "Atenção! Se caso somente os DEPENDENTES, FILHOS ou ACOMPANHANTES forem participar da atividade, marque a opção acima.",
+  "warningMessageLight": "Atenção! Caso possua DEPENDENTES, FILHOS ou ACOMPANHANTES, clique no botão \"ADICIONAR DEPENDENTES\" para cadastrá-los. Insira o nome completo, a data de nascimento e os demais campos que forem exigidos.",
+  "addDependant": "Adicionar dependentes/acompanhantes",
+  "next": "Próximo"
 }

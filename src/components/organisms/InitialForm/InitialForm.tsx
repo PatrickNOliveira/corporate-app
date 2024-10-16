@@ -5,6 +5,7 @@ import {RadioGroup} from "../../atoms/RadioGroup/RadioGroup";
 import {Input} from "../../atoms/Input/Input";
 import {Spacer} from "../../atoms/Spacer/Spacer";
 import {CheckboxGroup} from "../../atoms/CheckboxGroup/CheckboxGroup";
+import {Button} from "../../atoms/Button/Button";
 
 export const InitialForm = () => {
     const {t} = useTranslation()
@@ -23,19 +24,36 @@ export const InitialForm = () => {
                         value: 'passport'
                     }
                 ]}
-                onChange={() => {}}
+                onChange={() => {
+                }}
             />
-            <Spacer space="10px" />
+            <Spacer space="10px"/>
             <Input
                 placeholder={(t('cpfInitialFormLabel'))}
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 helperText={t('requiredField')}
             />
-            <Spacer space="10px" />
+            <Spacer space="10px"/>
             <CheckboxGroup
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 label={t('onlyDependants')}
             />
+            <Spacer space="10px"/>
+            <S.AlertMessage>
+                {t('warningMessage')}
+            </S.AlertMessage>
+            <Spacer space="10px"/>
+            <S.AlertBox>
+                <S.AlertMessageLight>
+                    {t('warningMessageLight')}
+                </S.AlertMessageLight>
+            </S.AlertBox>
+            <Spacer space="10px"/>
+            <Button label={t('addDependant')} onClick={() => {}} />
+            <Spacer space="10px"/>
+            <Button label={t('next')} onClick={() => {}} />
         </S.Containter>
     </>
 }

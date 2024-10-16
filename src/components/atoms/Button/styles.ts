@@ -5,16 +5,15 @@ interface ButtonProps {
     variant?: "primary" | "secondary" | "danger";
 }
 export const Button = styled.TouchableOpacity<ButtonProps>`
-  background: ${(props) =>
-          !props.variant || props.variant === "primary"
-                  ? "#FFF"
-                  : props.variant === 'secondary' ? Colors.PRIMARY : Colors.DANGER};
-  width: 90%;
-  border-radius: 10px;
+  background: #3c8d11;
+  width: 100%;
+  border-radius: 5px;
 `
 
 export const LabelPrimary = styled.Text`
-  color: ${Colors.PRIMARY};
+  color: #FFF;
+  text-transform: uppercase;
+  font-weight: 600;  
   text-align: center;
   padding: 15px;
   font-size: 17px;

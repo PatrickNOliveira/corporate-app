@@ -7,6 +7,22 @@ export const Title = styled.Text`
     font-size: 25px;
 `
 
-export const Containter = styled.View`
+export const Containter = styled.ScrollView`
     padding: 10px;
+`
+
+export const AlertMessage = styled.Text`
+    color: #f44336;
+    font-weight: 600;
+`
+
+export const AlertBox = styled.View`
+    width: 100%;
+    background: #f44336;
+    padding: 20px;
+`
+
+export const AlertMessageLight = styled.Text`
+    color: #fff;
+    font-weight: 600;
 `

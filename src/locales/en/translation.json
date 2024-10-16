@@ -8,5 +8,9 @@
   "cpfInitialFormLabel": "CPF (Brazilian citizen - Owner or Responsible)",
   "passportInitialFormLabel": "Passport (Owner or Responsible)",
   "requiredField": "Field is required",
-  "onlyDependants": "Consider only dependants/companions"
+  "onlyDependants": "Consider only dependants/companions",
+  "warningMessage": "Attention! If only DEPENDENTS, CHILDREN or COMPANIONS will participate in the activity, check the box above.",
+  "warningMessageLight": "Attention! If you have DEPENDENTS, CHILDREN or COMPANIONS, click on the \"ADD DEPENDANTS\" button to register them. Enter the full name, date of birth and any other required fields.",
+  "addDependant": "Add dependants/companions",
+  "next": "Next"
 }

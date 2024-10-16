@@ -8,5 +8,9 @@
   "cpfInitialFormLabel": "CPF (Ciudadano brasileño - Dueño o Responsable)",
   "passportInitialFormLabel": "Pasaporte (Dueño o Responsable)",
   "requiredField": "Campo obligatorio",
-  "onlyDependants": "Considere solo a los dependientes/acompañantes"
+  "onlyDependants": "Considere solo a los dependientes/acompañantes",
+  "warningMessage": "¡Atención! Si sólo participarán en la actividad DEPENDIENTES, HIJOS o ACOMPAÑANTES, marque la casilla de arriba.",
+  "warningMessageLight": "¡Atención! Si tiene DEPENDIENTES, HIJOS o ACOMPAÑANTES, haga clic en el botón \"AÑADIR DEPENDIENTES\" para registrarlos. Ingrese el nombre completo, la fecha de nacimiento y cualquier otro campo requerido.",
+  "addDependant": "Agregar dependientes/acompañantes",
+  "next": "Próximo"
 }
