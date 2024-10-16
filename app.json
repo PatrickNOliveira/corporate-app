@@ -12,7 +12,8 @@
         {
           "photosPermission": "O app quer ter acesso as suas imagens"
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "splash": {
       "image": "./assets/splash.png",

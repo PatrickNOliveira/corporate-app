@@ -6,7 +6,9 @@ import {Provider} from 'react-redux';
 import {store} from "./src/common/redux/store";
 import {SnackbarProvider} from "./src/common/providers/Snackbar.provider";
 import {LoadingProvider} from "./src/common/providers/Loading.provider";
-import { navigationRef } from './src/common/utils/RootNavigation';
+import {navigationRef} from './src/common/utils/RootNavigation';
+import {I18nextProvider} from 'react-i18next';
+import i18n from "./src/i18n";
 
 export default function App() {
     return (
@@ -14,9 +16,11 @@ export default function App() {
             <LoadingProvider>
                 <SnackbarProvider>
                     <NavigationContainer ref={navigationRef}>
-                        <TemplateProvider>
-                            <Routes/>
-                        </TemplateProvider>
+                        <I18nextProvider i18n={i18n}>
+                            <TemplateProvider>
+                                <Routes/>
+                            </TemplateProvider>
+                        </I18nextProvider>
                     </NavigationContainer>
                 </SnackbarProvider>
             </LoadingProvider>

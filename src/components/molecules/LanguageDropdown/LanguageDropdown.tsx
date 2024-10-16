@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { TouchableOpacity, Modal, FlatList, TouchableWithoutFeedback } from 'react-native';
 import * as S from './styles'
+import {useTranslation} from "react-i18next";
+import i18n from '../../../i18n';
 
 // Tipagem para os idiomas
 interface Language {
@@ -17,11 +19,17 @@ const languages: Language[] = [
 ];
 
 export const LanguageDropdown: React.FC = () => {
+    const { t, i18n } = useTranslation();
+
+    const changeLanguage = (language: string) => {
+        i18n.changeLanguage(language);
+    };
     const [selectedLanguage, setSelectedLanguage] = useState<Language>(languages[0]); // Idioma padrão
     const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     const selectLanguage = (language: Language) => {
         setSelectedLanguage(language);
+        changeLanguage(language.value);
         setModalVisible(false);
     };
 
