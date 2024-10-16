@@ -7,5 +7,6 @@
   "documentType": "Tipo de documento",
   "cpfInitialFormLabel": "CPF (Titular ou responsável)",
   "passportInitialFormLabel": "Passaporte (Titular ou Responsável)",
-  "requiredField": "Campo obrigatório"
+  "requiredField": "Campo obrigatório",
+  "onlyDependants": "Considerar apenas os dependentes/acompanhantes"
 }

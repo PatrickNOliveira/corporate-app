@@ -7,5 +7,6 @@
   "documentType": "Document's type",
   "cpfInitialFormLabel": "CPF (Brazilian citizen - Owner or Responsible)",
   "passportInitialFormLabel": "Passport (Owner or Responsible)",
-  "requiredField": "Field is required"
+  "requiredField": "Field is required",
+  "onlyDependants": "Consider only dependants/companions"
 }
