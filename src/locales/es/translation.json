@@ -3,5 +3,9 @@
   "register": "Regístrate",
   "portuguese": "Portugués",
   "english": "Inglés",
-  "spanish": "Español"
+  "spanish": "Español",
+  "documentType": "Tipo de documento",
+  "cpfInitialFormLabel": "CPF (Ciudadano brasileño - Dueño o Responsable)",
+  "passportInitialFormLabel": "Pasaporte (Dueño o Responsable)",
+  "requiredField": "Campo obligatorio"
 }

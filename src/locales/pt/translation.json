@@ -3,5 +3,9 @@
   "register": "Faça seu cadastro",
   "portuguese": "Português",
   "english": "English",
-  "spanish": "Español"
+  "spanish": "Español",
+  "documentType": "Tipo de documento",
+  "cpfInitialFormLabel": "CPF (Titular ou responsável)",
+  "passportInitialFormLabel": "Passaporte (Titular ou Responsável)",
+  "requiredField": "Campo obrigatório"
 }

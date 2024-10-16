@@ -3,5 +3,9 @@
   "register": "Sign Up",
   "portuguese": "Portuguese",
   "english": "English",
-  "spanish": "Spanish"
+  "spanish": "Spanish",
+  "documentType": "Document's type",
+  "cpfInitialFormLabel": "CPF (Brazilian citizen - Owner or Responsible)",
+  "passportInitialFormLabel": "Passport (Owner or Responsible)",
+  "requiredField": "Field is required"
 }

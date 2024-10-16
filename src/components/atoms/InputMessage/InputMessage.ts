@@ -13,6 +13,6 @@ export const InputMessage = styled.Text<InputMessageProps>`
   color:  ${(props) =>
           !props.error
                   ? '#000'
-                  : '#F00'};
+                  : '#545454'};
   width: 90%;
 `
