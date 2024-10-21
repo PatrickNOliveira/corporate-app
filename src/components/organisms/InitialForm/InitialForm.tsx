@@ -39,13 +39,7 @@ export const InitialForm = () => {
                 return schema.nullable();
             }
         }),
-        responsibleName: Yup.string().when('documentType', (documentType, schema) => {
-            if (documentType[0] === 'passport') {
-                return schema.required(t('requiredField'));
-            } else {
-                return schema.nullable();
-            }
-        }),
+        responsibleName: Yup.string().required(t('requiredField')),
         nationality: Yup.string().when('documentType', (documentType, schema) => {
             if (documentType[0] === 'passport') {
                 return schema.required(t('requiredField'));
@@ -53,13 +47,7 @@ export const InitialForm = () => {
                 return schema.nullable();
             }
         }),
-        birthdayDate: Yup.string().when('documentType', (documentType, schema) => {
-            if (documentType[0] === 'passport') {
-                return schema.required(t('requiredField'));
-            } else {
-                return schema.nullable();
-            }
-        }),
+        birthdayDate: Yup.string().required(t('requiredField')),
         dependentes: Yup.array().of(
             Yup.object().shape({
                 nome: Yup.string().required(t('requiredField')),
@@ -123,6 +111,24 @@ export const InitialForm = () => {
                     />
                     <Spacer space="10px" />
 
+                    <Input
+                        placeholder={t('responsibleName')}
+                        onChange={handleChange('responsibleName')}
+                        value={values.responsibleName}
+                        error={!!touched.responsibleName && !!errors.responsibleName}
+                        helperText={touched.responsibleName && errors.responsibleName ? errors.responsibleName : t('requiredField')}
+                    />
+                    <Spacer space="10px" />
+
+                    <Input
+                        placeholder={(t('birthdayDate'))}
+                        onChange={handleChange('birthdayDate')}
+                        value={values.birthdayDate}
+                        error={!!touched.birthdayDate && !!errors.birthdayDate}
+                        helperText={touched.birthdayDate && errors.birthdayDate ? errors.birthdayDate : t('requiredField')}
+                    />
+                    <Spacer space="10px" />
+
                     {/* Conditional Inputs based on document type */}
                     {telaDocumento === 1 && (
                         <Input
@@ -144,27 +150,11 @@ export const InitialForm = () => {
                             />
                             <Spacer space="10px" />
                             <Input
-                                placeholder={t('responsibleName')}
-                                onChange={handleChange('responsibleName')}
-                                value={values.responsibleName}
-                                error={!!touched.responsibleName && !!errors.responsibleName}
-                                helperText={touched.responsibleName && errors.responsibleName ? errors.responsibleName : t('requiredField')}
-                            />
-                            <Spacer space="10px" />
-                            <Input
                                 placeholder={(t('nationality'))}
                                 onChange={handleChange('nationality')}
                                 value={values.nationality}
                                 error={!!touched.nationality && !!errors.nationality}
                                 helperText={touched.nationality && errors.nationality ? errors.nationality : t('requiredField')}
-                            />
-                            <Spacer space="10px" />
-                            <Input
-                                placeholder={(t('birthdayDate'))}
-                                onChange={handleChange('birthdayDate')}
-                                value={values.birthdayDate}
-                                error={!!touched.birthdayDate && !!errors.birthdayDate}
-                                helperText={touched.birthdayDate && errors.birthdayDate ? errors.birthdayDate : t('requiredField')}
                             />
                         </>
                     )}

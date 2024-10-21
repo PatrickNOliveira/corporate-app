@@ -28,7 +28,7 @@ export const AdditionalInfoForm = () => {
     const onSubmit = async (values: TelaInicialData) => {
         try {
             loading.start()
-            console.log(values)
+            router.navigate('Termos', { data: values })
         } catch (e) {
             errorHandle(e)
         } finally {

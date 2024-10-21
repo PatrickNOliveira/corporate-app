@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../common/redux/RootState";
 import {Home} from "../components/templates/Home/Home";
 import {InformacoesAdicionais} from "../components/templates/InformacoesAdicionais/InformacoesAdicionais";
+import {Termos} from "../components/templates/Termos/Termos";
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,9 @@ export function Routes() {
             <Stack.Screen options={{
                 headerShown: false
             }} name="Informacoes Adicionais" component={InformacoesAdicionais} />
+            <Stack.Screen options={{
+                headerShown: false
+            }} name="Termos" component={Termos} />
             {/*<Stack.Screen options={navigationOptions} name="Criar Conta" component={CadastrarSe} />*/}
         </Stack.Navigator>
     );
