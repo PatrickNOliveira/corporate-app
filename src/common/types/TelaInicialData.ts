@@ -1,6 +1,6 @@
 import {Dependente} from "./Dependente";
 
-export type TelaInicialData = {
+export interface TelaInicialData extends AdditionalInfoData {
     documentType: string,
     cpf: string,
     passport: string,
@@ -9,4 +9,9 @@ export type TelaInicialData = {
     birthdayDate: string,
     onlyDependants: boolean,
     dependentes: Dependente[]
+}
+
+export type AdditionalInfoData = {
+    cell: string
+    email: string
 }

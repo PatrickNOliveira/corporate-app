@@ -20,5 +20,8 @@
   "dependentBirthdayDate": "Data de nascimento (Dependente/acompanhante)",
   "removeDependent": "Remover dependente",
   "onlyNumbers": "Deve conter apenas números",
-  "onlyDependantsValidationInfo": "Envie dependentes ou desmarque a opção \"Apenas dependentes\""
+  "onlyDependantsValidationInfo": "Envie dependentes ou desmarque a opção \"Apenas dependentes\"",
+  "additionalInfo": "Informações adicionais",
+  "cell": "Celular",
+  "invalidEmail": "E-mail inválido"
 }

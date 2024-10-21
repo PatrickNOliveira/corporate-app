@@ -4,6 +4,7 @@ import {Colors} from "../common/constants/Colors"
 import {useSelector} from "react-redux";
 import {RootState} from "../common/redux/RootState";
 import {Home} from "../components/templates/Home/Home";
+import {InformacoesAdicionais} from "../components/templates/InformacoesAdicionais/InformacoesAdicionais";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,9 @@ export function Routes() {
             <Stack.Screen options={{
                 headerShown: false
             }} name="Index" component={Home} />
+            <Stack.Screen options={{
+                headerShown: false
+            }} name="Informacoes Adicionais" component={InformacoesAdicionais} />
             {/*<Stack.Screen options={navigationOptions} name="Criar Conta" component={CadastrarSe} />*/}
         </Stack.Navigator>
     );

@@ -12,6 +12,8 @@ import * as Yup from 'yup'
 import {useSnackbar} from "../../../common/hooks/useSnackbar";
 import {useErrorHandle} from "../../../common/hooks/useErrorHandle";
 import {useLoading} from "../../../common/hooks/useLoading";
+import NetInfo from '@react-native-community/netinfo';
+import {useNavigation} from "@react-navigation/native";
 
 export const InitialForm = () => {
     const { t } = useTranslation();
@@ -19,6 +21,7 @@ export const InitialForm = () => {
     const snackbar = useSnackbar()
     const errorHandle = useErrorHandle()
     const loading = useLoading()
+    const router = useNavigation<any>();
 
     const validationSchema = Yup.object().shape({
         documentType: Yup.string(),
@@ -72,6 +75,13 @@ export const InitialForm = () => {
                 snackbar.show(t('onlyDependantsValidationInfo'), 'error')
                 return;
             }
+            router.navigate('Informacoes Adicionais', {
+                data: values
+            })
+            /*NetInfo.fetch().then(state => {
+                console.log('Connection type', state.type);
+                console.log('Is connected?', state.isConnected);
+            });*/
         } catch (e) {
             errorHandle(e)
         } finally {
@@ -90,7 +100,9 @@ export const InitialForm = () => {
                 nationality: '',
                 birthdayDate: '',
                 onlyDependants: false,
-                dependentes: []
+                dependentes: [],
+                cell: '',
+                email: ''
             } as TelaInicialData}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
