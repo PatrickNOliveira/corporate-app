@@ -12,6 +12,11 @@ export const Container = styled.ScrollView`
     padding-bottom: 20px;
 `
 
+export const Content = styled.View`
+    padding: 10px;
+    padding-bottom: 20px;
+`
+
 export const Container2 = styled.View`
     padding-right: 40px;
     padding-left: 40px;

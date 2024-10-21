@@ -5,16 +5,25 @@ type Props = {
     variant?: 'primary' | 'secondary' | 'danger'
     label: string
     onClick: () => void
+    disabled?: boolean
 }
-export const Button = ({ variant, label, onClick }: Props) => {
+export const Button = ({ variant, label, onClick, disabled }: Props) => {
     return <S.ButtonBox>
-        <S.Button variant={variant} onPress={onClick}>
-            {
-                !variant || variant === 'primary' ?
-                <S.LabelPrimary>{ label }</S.LabelPrimary>
-                    :
+        {
+            disabled && <S.DisabledButton>
                 <S.LabelSecondary>{ label }</S.LabelSecondary>
-            }
-        </S.Button>
+            </S.DisabledButton>
+        }
+        {
+            !disabled &&
+            <S.Button variant={variant} onPress={onClick}>
+                {
+                    !variant || variant === 'primary' ?
+                        <S.LabelPrimary>{ label }</S.LabelPrimary>
+                        :
+                        <S.LabelSecondary>{ label }</S.LabelSecondary>
+                }
+            </S.Button>
+        }
     </S.ButtonBox>
 }

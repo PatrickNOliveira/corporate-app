@@ -1,18 +1,18 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Header} from "../../organisms/Header/Header";
 import * as S from './styles'
 import {useTranslation} from "react-i18next";
 import {Text} from "react-native";
 import {useRoute} from "@react-navigation/native";
 import {Spacer} from "../../atoms/Spacer/Spacer";
+import {CheckboxGroup} from "../../atoms/CheckboxGroup/CheckboxGroup";
+import {Button} from "../../atoms/Button/Button";
 
 export const Termos = () => {
     const {t} = useTranslation()
     const route = useRoute<any>();
     const {data} = route.params;
-    useEffect(() => {
-        console.log(data)
-    }, []);
+    const [disabled, setDisabled] = useState<boolean>(true)
     const renderizarComorbidades = () => {
         const rows = [];
         for (let i = 1; i <= 16; i++) {
@@ -25,7 +25,7 @@ export const Termos = () => {
                 </S.Paragraph>
             </S.ListItem>);
         }
-        return rows.map((r,key) => (
+        return rows.map((r, key) => (
             r
         ));
     }
@@ -317,7 +317,17 @@ export const Termos = () => {
                 </S.ListItem>
 
             </S.ContainerList>
-            <Spacer space="80px" />
+            <Spacer space="80px"/>
         </S.Container>
+        <S.Content>
+            <CheckboxGroup
+                onChange={(v) => {
+                    setDisabled(!v)
+                }}
+                label={t('agree_terms')}
+            />
+            <Button label={t('next')} disabled={disabled} onClick={() => {
+            }}/>
+        </S.Content>
     </>
 }

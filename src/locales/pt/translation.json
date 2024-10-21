@@ -94,5 +94,6 @@
   "climbing": "Arvorismo",
   "scheduling_info_arborism": "O agendamento é feito no mesmo dia.",
   "operating_hours_arborism": "Horários para realizar o arvorismo: 10:00, 14:00 e 16:00.",
-  "capacity_limit_arborism": "Limite de 8 pessoas por horário."
+  "capacity_limit_arborism": "Limite de 8 pessoas por horário.",
+  "agree_terms": "Concordo com os termos de serviço."
 }

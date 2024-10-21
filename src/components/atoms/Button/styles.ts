@@ -15,6 +15,12 @@ export const Button = styled.TouchableOpacity<ButtonProps>`
     border-radius: 5px;
 `;
 
+export const DisabledButton = styled.TouchableOpacity<ButtonProps>`
+    background: #aba7a7;
+    width: 100%;
+    border-radius: 5px;
+`;
+
 export const LabelPrimary = styled.Text`
   color: #FFF;
   text-transform: uppercase;
