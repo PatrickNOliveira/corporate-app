@@ -4,7 +4,6 @@ interface InputMessageProps {
     error?: boolean
 }
 export const InputMessage = styled.Text<InputMessageProps>`
-  font-family: Inter;
   font-size: 12px;
   font-weight: 400;
   line-height: 17px;
@@ -13,6 +12,6 @@ export const InputMessage = styled.Text<InputMessageProps>`
   color:  ${(props) =>
           !props.error
                   ? '#000'
-                  : '#545454'};
+                  : '#f00'};
   width: 90%;
 `

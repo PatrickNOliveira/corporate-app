@@ -1,59 +1,211 @@
-import React from 'react'
-import * as S from './styles'
-import {useTranslation} from "react-i18next";
-import {RadioGroup} from "../../atoms/RadioGroup/RadioGroup";
-import {Input} from "../../atoms/Input/Input";
-import {Spacer} from "../../atoms/Spacer/Spacer";
-import {CheckboxGroup} from "../../atoms/CheckboxGroup/CheckboxGroup";
-import {Button} from "../../atoms/Button/Button";
+import React, { useState } from 'react';
+import * as S from './styles';
+import { useTranslation } from "react-i18next";
+import { RadioGroup } from "../../atoms/RadioGroup/RadioGroup";
+import { Input } from "../../atoms/Input/Input";
+import { Spacer } from "../../atoms/Spacer/Spacer";
+import { CheckboxGroup } from "../../atoms/CheckboxGroup/CheckboxGroup";
+import { Button } from "../../atoms/Button/Button";
+import { Formik, FieldArray } from 'formik';
+import {TelaInicialData} from "../../../common/types/TelaInicialData";
+import * as Yup from 'yup'
 
 export const InitialForm = () => {
-    const {t} = useTranslation()
+    const { t } = useTranslation();
+    const [telaDocumento, setTelaDocumento] = useState<1 | 2>(1);
+
+    const validationSchema = Yup.object().shape({
+        documentType: Yup.string(),
+        cpf: Yup.string().when('documentType', (documentType, schema) => {
+            if (documentType[0] === 'cpf') {
+                return schema.required(t('requiredField')).matches(/^\d+$/, t('onlyNumbers'));
+            } else {
+                return schema.nullable();
+            }
+        }),
+        passport: Yup.string().when('documentType', (documentType, schema) => {
+            if (documentType[0] === 'passport') {
+                return schema.required(t('requiredField'));
+            } else {
+                return schema.nullable();
+            }
+        }),
+        responsibleName: Yup.string().when('documentType', (documentType, schema) => {
+            if (documentType[0] === 'passport') {
+                return schema.required(t('requiredField'));
+            } else {
+                return schema.nullable();
+            }
+        }),
+        nationality: Yup.string().when('documentType', (documentType, schema) => {
+            if (documentType[0] === 'passport') {
+                return schema.required(t('requiredField'));
+            } else {
+                return schema.nullable();
+            }
+        }),
+        birthdayDate: Yup.string().when('documentType', (documentType, schema) => {
+            if (documentType[0] === 'passport') {
+                return schema.required(t('requiredField'));
+            } else {
+                return schema.nullable();
+            }
+        }),
+        dependentes: Yup.array().of(
+            Yup.object().shape({
+                nome: Yup.string().required(t('requiredField')),
+                dataNascimento: Yup.string().required(t('requiredField'))
+            })
+        )
+    });
+
     return <>
         <S.Title>{t('register')}</S.Title>
-        <S.Containter>
-            <RadioGroup
-                label={t('documentType')}
-                options={[
-                    {
-                        label: t('cpfInitialFormLabel'),
-                        value: 'cpf'
-                    },
-                    {
-                        label: t('passportInitialFormLabel'),
-                        value: 'passport'
-                    }
-                ]}
-                onChange={() => {
-                }}
-            />
-            <Spacer space="10px"/>
-            <Input
-                placeholder={(t('cpfInitialFormLabel'))}
-                onChange={() => {
-                }}
-                helperText={t('requiredField')}
-            />
-            <Spacer space="10px"/>
-            <CheckboxGroup
-                onChange={() => {
-                }}
-                label={t('onlyDependants')}
-            />
-            <Spacer space="10px"/>
-            <S.AlertMessage>
-                {t('warningMessage')}
-            </S.AlertMessage>
-            <Spacer space="10px"/>
-            <S.AlertBox>
-                <S.AlertMessageLight>
-                    {t('warningMessageLight')}
-                </S.AlertMessageLight>
-            </S.AlertBox>
-            <Spacer space="10px"/>
-            <Button label={t('addDependant')} onClick={() => {}} />
-            <Spacer space="10px"/>
-            <Button label={t('next')} onClick={() => {}} />
-        </S.Containter>
+        <Formik
+            initialValues={{
+                documentType: 'cpf',
+                cpf: '',
+                passport: '',
+                responsibleName: '',
+                nationality: '',
+                birthdayDate: '',
+                dependentes: []
+            } as TelaInicialData}
+            validationSchema={validationSchema}
+            onSubmit={(values) => {
+                console.log('values', values);
+            }}
+        >
+            {({ values, handleChange, setFieldValue, handleSubmit, errors, touched }) => (
+                <S.Containter>
+                    <RadioGroup
+                        label={t('documentType')}
+                        options={[
+                            { label: t('cpfInitialFormLabel'), value: 'cpf' },
+                            { label: t('passportInitialFormLabel'), value: 'passport' }
+                        ]}
+                        defaultValue={values.documentType}
+                        onChange={(value) => {
+                            handleChange('documentType')(value);
+                            setTelaDocumento(value === 'cpf' ? 1 : 2);
+                        }}
+                    />
+                    <Spacer space="10px" />
+
+                    {/* Conditional Inputs based on document type */}
+                    {telaDocumento === 1 && (
+                        <Input
+                            placeholder={t('cpfInitialFormLabel')}
+                            value={values.cpf}
+                            error={!!touched.cpf && !!errors.cpf}
+                            onChange={handleChange('cpf')}
+                            helperText={touched.cpf && errors.cpf ? errors.cpf : t('requiredField')}
+                        />
+                    )}
+                    {telaDocumento === 2 && (
+                        <>
+                            <Input
+                                placeholder={t('passportInitialFormLabel')}
+                                value={values.passport}
+                                error={!!touched.passport && !!errors.passport}
+                                onChange={handleChange('passport')}
+                                helperText={touched.passport && errors.passport ? errors.passport : t('requiredField')}
+                            />
+                            <Spacer space="10px" />
+                            <Input
+                                placeholder={t('responsibleName')}
+                                onChange={handleChange('responsibleName')}
+                                value={values.responsibleName}
+                                error={!!touched.responsibleName && !!errors.responsibleName}
+                                helperText={touched.responsibleName && errors.responsibleName ? errors.responsibleName : t('requiredField')}
+                            />
+                            <Spacer space="10px" />
+                            <Input
+                                placeholder={(t('nationality'))}
+                                onChange={handleChange('nationality')}
+                                value={values.nationality}
+                                error={!!touched.nationality && !!errors.nationality}
+                                helperText={touched.nationality && errors.nationality ? errors.nationality : t('requiredField')}
+                            />
+                            <Spacer space="10px" />
+                            <Input
+                                placeholder={(t('birthdayDate'))}
+                                onChange={handleChange('birthdayDate')}
+                                value={values.birthdayDate}
+                                error={!!touched.birthdayDate && !!errors.birthdayDate}
+                                helperText={touched.birthdayDate && errors.birthdayDate ? errors.birthdayDate : t('requiredField')}
+                            />
+                        </>
+                    )}
+
+                    <Spacer space="10px" />
+                    <CheckboxGroup
+                        onChange={(v) => setFieldValue('onlyDependants', v)}
+                        label={t('onlyDependants')}
+                    />
+                    <Spacer space="10px" />
+
+                    <S.AlertMessage>{t('warningMessage')}</S.AlertMessage>
+                    <Spacer space="10px" />
+                    <S.AlertBox>
+                        <S.AlertMessageLight>{t('warningMessageLight')}</S.AlertMessageLight>
+                    </S.AlertBox>
+
+                    <Spacer space="10px" />
+
+                    {/* Dynamic Dependent Section */}
+                    <FieldArray name="dependentes">
+                        {({ push, remove }) => (
+                            <>
+                                <Button
+                                    label={t('addDependant')}
+                                    onClick={() =>
+                                        push({
+                                            id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                                            nome: '',
+                                            dataNascimento: ''
+                                        })
+                                    }
+                                />
+                                {values.dependentes.map((dependente, index) => (
+                                    <S.DependentBox key={dependente.id}>
+                                        <Spacer space="10px" />
+                                        <Input
+                                            placeholder={t('dependentName')}
+                                            value={dependente.nome}
+                                            onChange={handleChange(`dependentes.${index}.nome`)}
+                                            error={!!touched.dependentes?.[index]?.nome && !!(errors.dependentes?.[index] as any)?.nome}
+                                            helperText={touched.dependentes?.[index]?.nome && (errors.dependentes?.[index] as any)?.nome
+                                                ? (errors.dependentes?.[index] as any)?.nome
+                                                : t('requiredField')}
+                                        />
+                                        <Spacer space="10px" />
+                                        <Input
+                                            placeholder={t('dependentBirthdayDate')}
+                                            value={dependente.dataNascimento}
+                                            onChange={handleChange(`dependentes.${index}.dataNascimento`)}
+                                            error={!!touched.dependentes?.[index]?.dataNascimento && !!(errors.dependentes?.[index] as any)?.dataNascimento}
+                                            helperText={touched.dependentes?.[index]?.dataNascimento && (errors.dependentes?.[index] as any)?.dataNascimento
+                                                ? (errors.dependentes?.[index] as any)?.dataNascimento
+                                                : t('requiredField')}
+                                        />
+                                        <Spacer space="10px" />
+                                        <Button
+                                            variant="danger"
+                                            label={t('removeDependent')}
+                                            onClick={() => remove(index)}
+                                        />
+                                    </S.DependentBox>
+                                ))}
+                            </>
+                        )}
+                    </FieldArray>
+
+                    <Spacer space="10px" />
+                    <Button label={t('next')} onClick={handleSubmit} />
+                    <Spacer space="40px" />
+                </S.Containter>
+            )}
+        </Formik>
     </>
-}
+};

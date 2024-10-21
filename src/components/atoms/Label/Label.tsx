@@ -5,7 +5,6 @@ interface LabelProps {
     error?: boolean
 }
 export const Label = styled.Text<LabelProps>`
-  font-family: Inter;
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;

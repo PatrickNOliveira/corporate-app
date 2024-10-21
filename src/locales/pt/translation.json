@@ -12,5 +12,12 @@
   "warningMessage": "Atenção! Se caso somente os DEPENDENTES, FILHOS ou ACOMPANHANTES forem participar da atividade, marque a opção acima.",
   "warningMessageLight": "Atenção! Caso possua DEPENDENTES, FILHOS ou ACOMPANHANTES, clique no botão \"ADICIONAR DEPENDENTES\" para cadastrá-los. Insira o nome completo, a data de nascimento e os demais campos que forem exigidos.",
   "addDependant": "Adicionar dependentes/acompanhantes",
-  "next": "Próximo"
+  "next": "Próximo",
+  "responsibleName": "Nome (Titular ou Responsável)",
+  "nationality": "Nacionalidade",
+  "birthdayDate": "Data de nascimento",
+  "dependentName": "Nome do dependente/acompanhante",
+  "dependentBirthdayDate": "Data de nascimento (Dependente/acompanhante)",
+  "removeDependent": "Remover dependente",
+  "onlyNumbers": "Deve conter apenas números"
 }

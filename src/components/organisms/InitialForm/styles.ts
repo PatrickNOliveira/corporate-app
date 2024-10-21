@@ -26,3 +26,9 @@ export const AlertMessageLight = styled.Text`
     color: #fff;
     font-weight: 600;
 `
+
+export const DependentBox = styled.View`
+    width: 90%;
+    flex-direction: column;
+    align-self: center;
+`
