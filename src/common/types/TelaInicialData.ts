@@ -7,5 +7,6 @@ export type TelaInicialData = {
     responsibleName: string,
     nationality: string,
     birthdayDate: string,
+    onlyDependants: boolean,
     dependentes: Dependente[]
 }

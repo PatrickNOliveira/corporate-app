@@ -19,5 +19,6 @@
   "dependentName": "Dependant/companion's name",
   "dependentBirthdayDate": "Birth Date (Dependant/companion)",
   "removeDependent": "Remove dependent",
-  "onlyNumbers": "Must only contain numbers"
+  "onlyNumbers": "Must only contain numbers",
+  "onlyDependantsValidationInfo": "Submit dependents or uncheck \"Dependents only\""
 }

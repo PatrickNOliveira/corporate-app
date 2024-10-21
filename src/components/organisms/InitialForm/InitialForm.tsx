@@ -9,10 +9,16 @@ import { Button } from "../../atoms/Button/Button";
 import { Formik, FieldArray } from 'formik';
 import {TelaInicialData} from "../../../common/types/TelaInicialData";
 import * as Yup from 'yup'
+import {useSnackbar} from "../../../common/hooks/useSnackbar";
+import {useErrorHandle} from "../../../common/hooks/useErrorHandle";
+import {useLoading} from "../../../common/hooks/useLoading";
 
 export const InitialForm = () => {
     const { t } = useTranslation();
     const [telaDocumento, setTelaDocumento] = useState<1 | 2>(1);
+    const snackbar = useSnackbar()
+    const errorHandle = useErrorHandle()
+    const loading = useLoading()
 
     const validationSchema = Yup.object().shape({
         documentType: Yup.string(),
@@ -59,6 +65,20 @@ export const InitialForm = () => {
         )
     });
 
+    const onSubmit = async (values: TelaInicialData) => {
+        try {
+            loading.start()
+            if(values.onlyDependants && values.dependentes.length === 0) {
+                snackbar.show(t('onlyDependantsValidationInfo'), 'error')
+                return;
+            }
+        } catch (e) {
+            errorHandle(e)
+        } finally {
+            loading.stop()
+        }
+    }
+
     return <>
         <S.Title>{t('register')}</S.Title>
         <Formik
@@ -69,12 +89,11 @@ export const InitialForm = () => {
                 responsibleName: '',
                 nationality: '',
                 birthdayDate: '',
+                onlyDependants: false,
                 dependentes: []
             } as TelaInicialData}
             validationSchema={validationSchema}
-            onSubmit={(values) => {
-                console.log('values', values);
-            }}
+            onSubmit={onSubmit}
         >
             {({ values, handleChange, setFieldValue, handleSubmit, errors, touched }) => (
                 <S.Containter>

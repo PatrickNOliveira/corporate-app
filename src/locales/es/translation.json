@@ -19,5 +19,6 @@
   "dependentName": "Nombre del dependiente/acompañante",
   "dependentBirthdayDate": "Fecha de nacimiento (Dependiente/acompañante)",
   "removeDependent": "Eliminar dependiente",
-  "onlyNumbers": "Sólo debe contener números"
+  "onlyNumbers": "Sólo debe contener números",
+  "onlyDependantsValidationInfo": "Envíe dependientes o desmarque \"Solo dependientes\""
 }
