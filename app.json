@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "pet-frontend",
-    "slug": "pet-frontend",
+    "name": "corporate-app",
+    "slug": "corporate-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,7 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anjode4patas.amorpor4patas"
+      "bundleIdentifier": "com.seguroecotrip.corporateweb"
     },
     "android": {
       "adaptiveIcon": {
@@ -35,7 +35,7 @@
       "permissions": [
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.anjode4patas.amorpor4patas",
+      "package": "com.seguroecotrip.corporateweb",
       "versionCode": 7
     },
     "web": {

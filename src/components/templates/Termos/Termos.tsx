@@ -16,8 +16,6 @@ export const Termos = () => {
     const renderizarComorbidades = () => {
         const rows = [];
         for (let i = 1; i <= 16; i++) {
-            // note: we are adding a key prop here to allow react to uniquely identify each
-            // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
             rows.push(<S.ListItem key={i}>
                 <S.NumberText>-</S.NumberText>
                 <S.Paragraph>

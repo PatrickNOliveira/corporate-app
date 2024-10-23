@@ -14,8 +14,11 @@ import {useErrorHandle} from "../../../common/hooks/useErrorHandle";
 import {useLoading} from "../../../common/hooks/useLoading";
 import NetInfo from '@react-native-community/netinfo';
 import {useNavigation} from "@react-navigation/native";
+import {useApi} from "../../../common/hooks/useApi";
+import {CadastrarDependentesContract} from "../../../common/types/CadastrarDependentesModel";
 
 export const InitialForm = () => {
+    const api = useApi()
     const { t } = useTranslation();
     const [telaDocumento, setTelaDocumento] = useState<1 | 2>(1);
     const snackbar = useSnackbar()
@@ -63,13 +66,43 @@ export const InitialForm = () => {
                 snackbar.show(t('onlyDependantsValidationInfo'), 'error')
                 return;
             }
-            router.navigate('Informacoes Adicionais', {
-                data: values
-            })
-            /*NetInfo.fetch().then(state => {
-                console.log('Connection type', state.type);
-                console.log('Is connected?', state.isConnected);
-            });*/
+            let hasConnection: boolean = false;
+            const state = await NetInfo.fetch();
+            hasConnection = state.isConnected ?? false;
+            if (hasConnection) {
+                const data = {
+                    name: values.responsibleName,
+                    birthDate: values.birthdayDate,
+                    nationality: values.nationality,
+                    companyHash: 'identificacao1',
+                    doc: values.cpf,
+                    docType: values.documentType === 'cpf' ? 2 : 1,
+                    phone: values.cell,
+                    email: values.email,
+                    contactPhone: "+55",
+                    contactName: "",
+                    isConnected:true,
+                    status: "",
+                    onlyDependants: values.onlyDependants,
+                    pdvId:null
+                }
+                const response = await api.Cadastro.primeiroCadastro(data);
+                if (values.dependentes?.length > 0) {
+                    for (const d of values.dependentes) {
+                        const contract: CadastrarDependentesContract = {
+                            name: d.nome,
+                            extraInfo: `{"birthDate":"${d.dataNascimento}"}`
+                        }
+                        await api.Cadastro.dependentes(contract, response.insuredClient.hash)
+                    }
+                }
+                router.navigate('Informacoes Adicionais', {
+                    data: {
+                        ...values,
+                        hash: response.insuredClient.hash
+                    }
+                })
+            }
         } catch (e) {
             errorHandle(e)
         } finally {

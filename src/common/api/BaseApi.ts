@@ -11,8 +11,7 @@ export class BaseApi {
     protected api: AxiosInstance;
     constructor() {
         this.api = axios.create({
-            baseURL: "https://pet-production-b1a624c86894.herokuapp.com",
-            //baseURL: "http://192.168.0.21:3000",
+            baseURL: "https://dqeb384q33.execute-api.us-east-1.amazonaws.com/prod",
             headers: {
                 Accept: 'application/json',
                 Content: 'application/json',

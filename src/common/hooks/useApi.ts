@@ -1,28 +1,10 @@
-import {UsuarioApi} from "../api/UsuarioApi";
-import {PetApi} from "../api/PetApi";
-import {IbgeApi} from "../api/IbgeApi";
-import {ClinicaApi} from "../api/ClinicaApi";
-import {PlanoApi} from "../api/PlanoApi";
-import { FarmaciaApi } from "../api/FarmaciaApi";
-import { AdestradorApi } from "../api/AdestradorApi";
+import { CadastroApi } from "../api/CadastroApi";
 
 class Api {
     constructor() {
-        this.Usuario = new UsuarioApi();
-        this.Pet = new PetApi();
-        this.IBGE = new IbgeApi();
-        this.Clinica = new ClinicaApi();
-        this.Plano = new PlanoApi();
-        this.Farmacia = new FarmaciaApi();
-        this.Adestrador = new AdestradorApi();
+        this.Cadastro = new CadastroApi();
     }
-    Plano: PlanoApi;
-    Usuario: UsuarioApi;
-    Clinica: ClinicaApi;
-    Pet: PetApi;
-    IBGE: IbgeApi;
-    Farmacia: FarmaciaApi;
-    Adestrador: AdestradorApi;
+    Cadastro: CadastroApi;
 }
 
 export const useApi = (): Api => {
