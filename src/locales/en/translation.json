@@ -95,5 +95,6 @@
   "scheduling_info_arborism": "The scheduling is done on the same day.",
   "operating_hours_arborism": "Times to do the tree climbing: 10:00 AM, 2:00 PM, and 4:00 PM.",
   "capacity_limit_arborism": "Capacity limit: 8 people per time slot.",
-  "agree_terms": "I agree to the terms of service."
+  "agree_terms": "I agree to the terms of service.",
+  "success": "Registration completed successfully"
 }

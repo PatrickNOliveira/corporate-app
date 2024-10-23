@@ -6,6 +6,7 @@ import {RootState} from "../common/redux/RootState";
 import {Home} from "../components/templates/Home/Home";
 import {InformacoesAdicionais} from "../components/templates/InformacoesAdicionais/InformacoesAdicionais";
 import {Termos} from "../components/templates/Termos/Termos";
+import {Final} from "../components/templates/Final/Final";
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,9 @@ export function Routes() {
             <Stack.Screen options={{
                 headerShown: false
             }} name="Informacoes Adicionais" component={InformacoesAdicionais} />
+            <Stack.Screen options={{
+                headerShown: false
+            }} name="Final" component={Final} />
             <Stack.Screen options={{
                 headerShown: false
             }} name="Termos" component={Termos} />

@@ -3,7 +3,7 @@ import {Header} from "../../organisms/Header/Header";
 import * as S from './styles'
 import {useTranslation} from "react-i18next";
 import {Text} from "react-native";
-import {useRoute} from "@react-navigation/native";
+import {useNavigation, useRoute} from "@react-navigation/native";
 import {Spacer} from "../../atoms/Spacer/Spacer";
 import {CheckboxGroup} from "../../atoms/CheckboxGroup/CheckboxGroup";
 import {Button} from "../../atoms/Button/Button";
@@ -13,6 +13,7 @@ import {RootState} from "../../../common/redux/RootState";
 export const Termos = () => {
     const dadosCadastrais = useSelector((state: RootState) => state.dadosCadastrais);
     const {t} = useTranslation()
+    const router = useNavigation<any>();
     const route = useRoute<any>();
     const {data} = route.params;
     const [disabled, setDisabled] = useState<boolean>(true)
@@ -328,7 +329,7 @@ export const Termos = () => {
                 label={t('agree_terms')}
             />
             <Button label={t('next')} disabled={disabled} onClick={() => {
-                console.log(dadosCadastrais)
+                router.navigate('Final')
             }}/>
         </S.Content>
     </>
