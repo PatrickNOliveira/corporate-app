@@ -7,8 +7,11 @@ import {useRoute} from "@react-navigation/native";
 import {Spacer} from "../../atoms/Spacer/Spacer";
 import {CheckboxGroup} from "../../atoms/CheckboxGroup/CheckboxGroup";
 import {Button} from "../../atoms/Button/Button";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../common/redux/RootState";
 
 export const Termos = () => {
+    const dadosCadastrais = useSelector((state: RootState) => state.dadosCadastrais);
     const {t} = useTranslation()
     const route = useRoute<any>();
     const {data} = route.params;
@@ -325,6 +328,7 @@ export const Termos = () => {
                 label={t('agree_terms')}
             />
             <Button label={t('next')} disabled={disabled} onClick={() => {
+                console.log(dadosCadastrais)
             }}/>
         </S.Content>
     </>

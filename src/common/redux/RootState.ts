@@ -1,4 +1,7 @@
 import {EscopoUsuario} from "../enums/EscopoUsuario";
+import {PrimeiroCadastroContract} from "../types/PrimeiroCadastroModel";
+import {CadastrarDependentesContract} from "../types/CadastrarDependentesModel";
+import {CadastrarInformacoesAdicionaisContract} from "../types/InformacoesAdicionaisModel";
 
 export type RootState = {
   usuarioLogado: {
@@ -14,4 +17,11 @@ export type RootState = {
     visible: boolean;
     variant: 'success' | 'error'
   }
+  dadosCadastrais: {
+    telaInicial?: {
+      primeiroCadastro: PrimeiroCadastroContract,
+      dependentes: CadastrarDependentesContract[],
+    },
+    informacoesAdicionais?: CadastrarInformacoesAdicionaisContract
+  }[]
 };

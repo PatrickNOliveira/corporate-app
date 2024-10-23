@@ -13,8 +13,11 @@ import {useNavigation, useRoute} from "@react-navigation/native";
 import NetInfo from "@react-native-community/netinfo";
 import {useApi} from "../../../common/hooks/useApi";
 import {CadastrarInformacoesAdicionaisContract} from "../../../common/types/InformacoesAdicionaisModel";
+import {useDispatch} from "react-redux";
+import {DADOS_CADASTRAIS} from "../../../common/redux/actions/dadosCadastrais";
 
 export const AdditionalInfoForm = () => {
+    const dispatch = useDispatch()
     const { t } = useTranslation();
     const errorHandle = useErrorHandle()
     const loading = useLoading()
@@ -35,6 +38,8 @@ export const AdditionalInfoForm = () => {
             let hasConnection: boolean = false;
             const state = await NetInfo.fetch();
             hasConnection = state.isConnected ?? false;
+            //TODO: REMOVER ANTES DE DEPLOYAR
+            hasConnection = false;
             if (hasConnection) {
                 const contract: CadastrarInformacoesAdicionaisContract = {
                     CellPhone: values.cell,
@@ -42,6 +47,42 @@ export const AdditionalInfoForm = () => {
                 }
                 await api.Cadastro.extraInfo(contract, data.hash)
                 router.navigate('Termos', { data: {...values, hash: data.hash} })
+            } else {
+                const novoDado = {
+                    telaInicial: {
+                        primeiroCadastro: {
+                            name: values.responsibleName,
+                            birthDate: values.birthdayDate,
+                            nationality: values.nationality,
+                            companyHash: 'identificacao1',
+                            doc: values.cpf,
+                            docType: values.documentType === 'cpf' ? 2 : 1,
+                            phone: values.cell,
+                            email: values.email,
+                            contactPhone: "+55",
+                            contactName: "",
+                            isConnected:true,
+                            status: "",
+                            onlyDependants: values.onlyDependants,
+                            pdvId:null
+                        },
+                        dependentes: values.dependentes.map(d => (
+                            {
+                                name: d.nome,
+                                extraInfo: `{"birthDate":"${d.dataNascimento}"}`
+                            }
+                        )),
+                    },
+                    informacoesAdicionais: {
+                        CellPhone: values.cell,
+                        email: values.email
+                    }
+                }
+                dispatch({
+                    type: DADOS_CADASTRAIS.SALVAR_TELA_INICIAL,
+                    novoDado
+                });
+                router.navigate('Termos', { data: {...values } })
             }
         } catch (e) {
             errorHandle(e)

@@ -21,7 +21,7 @@ const persistConfig: PersistConfig<RootState, any, any, any> = {
   key: 'root',
   storage: AsyncStorage,
   stateReconciler: autoMergeLevel1,
-  whitelist: ['usuarioLogado'],
+  whitelist: ['usuarioLogado', 'dadosCadastrais'],
 };
 
 const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);

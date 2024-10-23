@@ -16,8 +16,11 @@ import NetInfo from '@react-native-community/netinfo';
 import {useNavigation} from "@react-navigation/native";
 import {useApi} from "../../../common/hooks/useApi";
 import {CadastrarDependentesContract} from "../../../common/types/CadastrarDependentesModel";
+import {useDispatch} from "react-redux";
+import {DADOS_CADASTRAIS} from "../../../common/redux/actions/dadosCadastrais";
 
 export const InitialForm = () => {
+    const dispatch = useDispatch()
     const api = useApi()
     const { t } = useTranslation();
     const [telaDocumento, setTelaDocumento] = useState<1 | 2>(1);
@@ -69,6 +72,8 @@ export const InitialForm = () => {
             let hasConnection: boolean = false;
             const state = await NetInfo.fetch();
             hasConnection = state.isConnected ?? false;
+            //TODO: REMOVER ANTES DE DEPLOYAR
+            hasConnection = false;
             if (hasConnection) {
                 const data = {
                     name: values.responsibleName,
@@ -100,6 +105,12 @@ export const InitialForm = () => {
                     data: {
                         ...values,
                         hash: response.insuredClient.hash
+                    }
+                })
+            } else {
+                router.navigate('Informacoes Adicionais', {
+                    data: {
+                        ...values,
                     }
                 })
             }
