@@ -72,8 +72,6 @@ export const InitialForm = () => {
             let hasConnection: boolean = false;
             const state = await NetInfo.fetch();
             hasConnection = state.isConnected ?? false;
-            //TODO: REMOVER ANTES DE DEPLOYAR
-            hasConnection = false;
             if (hasConnection) {
                 const data = {
                     name: values.responsibleName,

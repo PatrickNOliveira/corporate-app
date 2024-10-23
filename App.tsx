@@ -9,6 +9,7 @@ import {LoadingProvider} from "./src/common/providers/Loading.provider";
 import {navigationRef} from './src/common/utils/RootNavigation';
 import {I18nextProvider} from 'react-i18next';
 import i18n from "./src/i18n";
+import {CadastrarOfflineProvider} from "./src/common/providers/CadastrarOfflineProvider";
 
 export default function App() {
     return (
@@ -17,9 +18,11 @@ export default function App() {
                 <SnackbarProvider>
                     <NavigationContainer ref={navigationRef}>
                         <I18nextProvider i18n={i18n}>
-                            <TemplateProvider>
-                                <Routes/>
-                            </TemplateProvider>
+                            <CadastrarOfflineProvider>
+                                <TemplateProvider>
+                                    <Routes/>
+                                </TemplateProvider>
+                            </CadastrarOfflineProvider>
                         </I18nextProvider>
                     </NavigationContainer>
                 </SnackbarProvider>

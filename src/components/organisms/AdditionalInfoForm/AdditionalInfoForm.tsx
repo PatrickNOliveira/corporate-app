@@ -38,8 +38,6 @@ export const AdditionalInfoForm = () => {
             let hasConnection: boolean = false;
             const state = await NetInfo.fetch();
             hasConnection = state.isConnected ?? false;
-            //TODO: REMOVER ANTES DE DEPLOYAR
-            hasConnection = false;
             if (hasConnection) {
                 const contract: CadastrarInformacoesAdicionaisContract = {
                     CellPhone: values.cell,
