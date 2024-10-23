@@ -10,11 +10,15 @@ import * as Yup from 'yup'
 import {useErrorHandle} from "../../../common/hooks/useErrorHandle";
 import {useLoading} from "../../../common/hooks/useLoading";
 import {useNavigation, useRoute} from "@react-navigation/native";
+import NetInfo from "@react-native-community/netinfo";
+import {useApi} from "../../../common/hooks/useApi";
+import {CadastrarInformacoesAdicionaisContract} from "../../../common/types/InformacoesAdicionaisModel";
 
 export const AdditionalInfoForm = () => {
     const { t } = useTranslation();
     const errorHandle = useErrorHandle()
     const loading = useLoading()
+    const api = useApi()
     const router = useNavigation<any>();
 
     const validationSchema = Yup.object().shape({
@@ -28,7 +32,17 @@ export const AdditionalInfoForm = () => {
     const onSubmit = async (values: TelaInicialData) => {
         try {
             loading.start()
-            router.navigate('Termos', { data: values })
+            let hasConnection: boolean = false;
+            const state = await NetInfo.fetch();
+            hasConnection = state.isConnected ?? false;
+            if (hasConnection) {
+                const contract: CadastrarInformacoesAdicionaisContract = {
+                    CellPhone: values.cell,
+                    email: values.email
+                }
+                await api.Cadastro.extraInfo(contract, data.hash)
+                router.navigate('Termos', { data: {...values, hash: data.hash} })
+            }
         } catch (e) {
             errorHandle(e)
         } finally {
