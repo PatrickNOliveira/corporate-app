@@ -13,7 +13,20 @@
           "photosPermission": "O app quer ter acesso as suas imagens"
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "buildToolsVersion": "34.0.0"
+          },
+          "ios": {
+            "deploymentTarget": "15.1"
+          }
+        }
+      ]
     ],
     "splash": {
       "image": "./assets/splash.png",
@@ -36,14 +49,14 @@
         "android.permission.RECORD_AUDIO"
       ],
       "package": "com.seguroecotrip.corporateweb",
-      "versionCode": 7
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "c6d0d9f4-a3d7-4cd5-8c8a-b2df999d2234"
+        "projectId": "d3eb9592-4d9c-4876-9fd6-396a51051f64"
       }
     }
   }
