@@ -48,6 +48,7 @@ export const CadastrarOfflineProvider = ({children}: Props) => {
                         if (d?.informacoesAdicionais) {
                             await api.Cadastro.extraInfo(d?.informacoesAdicionais, response?.insuredClient?.hash)
                         }
+                        await api.Cadastro.aceitarTermos(response?.insuredClient?.hash);
                     }
                 }
                 dispatch({

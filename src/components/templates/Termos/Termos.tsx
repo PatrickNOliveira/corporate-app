@@ -9,9 +9,16 @@ import {CheckboxGroup} from "../../atoms/CheckboxGroup/CheckboxGroup";
 import {Button} from "../../atoms/Button/Button";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../common/redux/RootState";
+import {useErrorHandle} from "../../../common/hooks/useErrorHandle";
+import {useLoading} from "../../../common/hooks/useLoading";
+import {useApi} from "../../../common/hooks/useApi";
+import NetInfo from "@react-native-community/netinfo";
 
 export const Termos = () => {
     const dadosCadastrais = useSelector((state: RootState) => state.dadosCadastrais);
+    const errorHandle = useErrorHandle()
+    const loading = useLoading()
+    const api = useApi()
     const {t} = useTranslation()
     const router = useNavigation<any>();
     const route = useRoute<any>();
@@ -30,6 +37,22 @@ export const Termos = () => {
         return rows.map((r, key) => (
             r
         ));
+    }
+    const onSubmit = async () => {
+        try {
+            loading.start();
+            let hasConnection: boolean = false;
+            const state = await NetInfo.fetch();
+            hasConnection = state?.isConnected ?? false;
+            if (hasConnection) {
+                await api.Cadastro.aceitarTermos(data.hash);
+                router.navigate('Final')
+            }
+        } catch (e) {
+            errorHandle(e);
+        } finally {
+            loading.stop();
+        }
     }
     return <>
         <Header/>
@@ -328,9 +351,7 @@ export const Termos = () => {
                 }}
                 label={t('agree_terms')}
             />
-            <Button label={t('next')} disabled={disabled} onClick={() => {
-                router.navigate('Final')
-            }}/>
+            <Button label={t('next')} disabled={disabled} onClick={onSubmit}/>
         </S.Content>
     </>
 }

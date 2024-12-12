@@ -49,7 +49,7 @@
         "android.permission.RECORD_AUDIO"
       ],
       "package": "com.seguroecotrip.corporateweb",
-      "versionCode": 8
+      "versionCode": 9
     },
     "web": {
       "favicon": "./assets/favicon.png"

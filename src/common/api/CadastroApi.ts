@@ -19,4 +19,8 @@ export class CadastroApi extends BaseApi {
     async extraInfo(data: CadastrarInformacoesAdicionaisContract, hashCliente: string): Promise<CadastrarInformacoesAdicionaisContract> {
         return (await this.api.post(`/quick-insured-client/updateExtraInfo/${hashCliente}`, data)).data
     }
+
+    async aceitarTermos(hash: string): Promise<string> {
+        return (await this.api.options(`/quick-insured-client/quick-insured-client/${hash}/accept/pt-BR`)).data
+    }
 }
