@@ -21,6 +21,7 @@
   "removeDependent": "Remover dependente",
   "onlyNumbers": "Deve conter apenas números",
   "onlyDependantsValidationInfo": "Envie dependentes ou desmarque a opção \"Apenas dependentes\"",
+  "invalidCpf": "Cpf inválido",
   "additionalInfo": "Informações adicionais",
   "cell": "Celular",
   "invalidEmail": "E-mail inválido",

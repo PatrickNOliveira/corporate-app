@@ -21,6 +21,7 @@
   "removeDependent": "Remove dependent",
   "onlyNumbers": "Must only contain numbers",
   "onlyDependantsValidationInfo": "Submit dependents or uncheck \"Dependents only\"",
+  "invalidCpf": "Invalid CPF",
   "additionalInfo": "Additional information",
   "cell": "Cellphone",
   "invalidEmail": "Invalid email",

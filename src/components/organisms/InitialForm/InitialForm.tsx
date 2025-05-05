@@ -29,11 +29,42 @@ export const InitialForm = () => {
     const loading = useLoading()
     const router = useNavigation<any>();
 
+    function validarCPF(cpf: string): boolean {
+        cpf = cpf.replace(/[^\d]+/g, '');
+
+        if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+            return false;
+        }
+
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        let resto = soma % 11;
+        let digito1 = resto < 2 ? 0 : 11 - resto;
+
+        if (digito1 !== parseInt(cpf.charAt(9))) {
+            return false;
+        }
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        resto = soma % 11;
+        let digito2 = resto < 2 ? 0 : 11 - resto;
+
+        return digito2 === parseInt(cpf.charAt(10));
+    }
+
     const validationSchema = Yup.object().shape({
         documentType: Yup.string(),
         cpf: Yup.string().when('documentType', (documentType, schema) => {
             if (documentType[0] === 'cpf') {
-                return schema.required(t('requiredField')).matches(/^\d+$/, t('onlyNumbers'));
+                return schema
+                    .required(t('requiredField'))
+                    .matches(/^\d+$/, t('onlyNumbers'))
+                    .test('valid-cpf', t('invalidCpf'), (value) => value ? validarCPF(value) : false);
             } else {
                 return schema.nullable();
             }
